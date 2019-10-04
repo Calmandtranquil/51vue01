@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{margin:0px; padding:0px;}
+        body{font-size:14px;}
+        #app{width:1000px; margin:10px auto;}
+        #bigImg{float:left; margin-right:10px;width: 200px}
+        .item{
+            width:340px;
+            line-height:30px;
+            box-sizing: border-box;
+            background:#f7f7f7;
+            border:1px solid #f7f7f7;
+            margin:10px 0px;
+            float:left;
+        }
+        .item img{vertical-align:middle; margin-right:10px;}
+        .select{ border:1px solid darkred;}
+
+    </style>
+    <script src="vue2.6.10.js"></script>
+</head>
+<body>
+<div id="app">
+    <img id="bigImg"  :src="list[deft].bigUrl" />
+    <p>颜色选择</p>
+    <div v-for="(mm,tt) in list" :key="tt" :class=['item',{'select':deft==tt}] @click="doIndex(tt)"><img  :src="mm.url"/>{{mm.name}}</div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+                list:[
+                    {name:'3312紫色',
+                        url:'image/01.jpg',
+                        bigUrl:'image/1.jpg'
+                },
+                    {name:'3312黑色',
+                        url:'image/02.jpg',
+                        bigUrl:'image/2.jpg'
+                    },
+                    {name:'3312蓝色',
+                        url:'image/03.jpg',
+                        bigUrl:'image/3.jpg'
+                    },
+                    {name:'3312墨绿色',
+                        url:'image/04.jpg',
+                        bigUrl:'image/4.jpg'
+                    },
+                ],
+                // item:{'item':true,'select':true,'item-img':true},
+                deft:0
+            }
+        },
+        methods:{
+            doIndex:function(tt){
+                this.deft=tt;
+            }
+        }
+    })
+</script>
+</body>
+</html>
